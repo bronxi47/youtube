@@ -1,35 +1,37 @@
-Pasos para instalar nuclei correctamente:
+# Pasos para instalar nuclei correctamente
 
-1. Instalar GO
+### 1. Instalar GO
+
+#### Buscamos la versión de Go
 
 https://go.dev/doc/install
 
+#### Descargamos GO
 
-Descargamos GO
+`wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz`
 
-wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz
+#### Eliminamos, si es que la hay, cualquier versión instalada de GO y además descomprimimos el archivo descargado en el paso anterior:
 
-Eliminamos, si es que la hay, cualquier versión instalada de GO y además descomprimimos el archivo descargado en el paso anterior:
+`rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz`
 
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.2.linux-amd64.tar.gz
+### 2. Hacemos un export del PATH de Go y lo pegamos en el archivo .profile para que prevalezca como parte del PATH:
 
-Hacemos un export del PATH de go y lo pegamos en el archivo .profile para que prevalezca como parte del PATH para todo lo que instalemos de GO de aquí en adelante:
+`echo 'export PATH=$PATH:/usr/local/go/bin' >> .profile`
 
-echo 'export PATH=$PATH:/usr/local/go/bin' >> .profile
+### 3. Hacemos un source .profile para que la shell actual tome ese cambio.
 
-Hacemos un source .profile para que la shell actual tome ese cambio.
+`source .profile`
 
-Revisamos que se haya instalado correctamente con
+### 4. Revisamos que se haya instalado correctamente con
 
-go version
+`go version`
 
-Ahora sí instalamos nuclei cómo dice en su repositorio oficial:
+### 5. Instalamos nuclei cómo dice en su repositorio oficial:
 
-go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+`go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest`
 
-Y lo movemos a la carpeta de /usr/local/go/bin para que funcione
+### 6. Lo movemos a la carpeta de /usr/local/go/bin para que funcione
 
+`mv go/bin/nuclei /usr/local/go/bin/`
 
-mv go/bin/nuclei /usr/local/go/bin/
-
-Y listo, tenemos nuclei andando en nuestra máquina.
+¡Y listo!, tenemos nuclei andando en nuestra máquina.
